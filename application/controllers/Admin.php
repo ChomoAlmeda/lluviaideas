@@ -8,6 +8,53 @@ class Admin extends CI_Controller {
     $this->load->library('comprobar');
     $this->load->library('menua');
 		$this->load->model('Admin_model');
+		$this->load->model('Inicio_model');
+	}
+
+	// =======================================
+	// Controlador para cargar el inicio
+	//
+	// Fecha: 2018-05-31
+	// =======================================
+	public function index(){
+		if($_POST) {
+			$contra = md5($this->input->post('Contra'));
+			$datos = array(
+				'Usuario' => $this->input->post('Nombre'),
+				'Contra' => $contra
+			);
+
+			$consulta = $this->Inicio_model->acceso($datos);
+
+			if($consulta -> num_rows() > 0){
+				foreach($consulta -> result() as $row){
+					$sesion = array(
+						'usuario'	=> $row->Usuario,
+						'id'			=> $row->IdUsuario,
+						'nombre' 	=> $row->Nombre,
+						'tipo' 		=> $row->Tipo,
+						'area'		=> $row->IdArea,
+					);
+
+					$this->session->set_userdata($sesion);
+					$tipo = $this->session->userdata('tipo');
+
+					echo $tipo;
+
+					if($tipo == 1){
+						redirect('admin');
+					}else{
+						redirect('usuario');
+					}
+				}
+			}else{
+				echo 'Reintentalo';
+			}
+		}else{
+			$this->load->view('theme/head');
+			$this->load->view('inicio');
+			$this->load->view('theme/foot');
+		}
 	}
 
   // =======================================
@@ -15,7 +62,7 @@ class Admin extends CI_Controller {
 	// esto sera tarea de los administradores
 	// Fecha: 2019-01-21
 	// =======================================
-  public function index(){
+  public function inicio(){
 		$datos['eventos'] = $this->Admin_model->listado();
     $this->load->view('theme/head');
     $this->load->view('theme/menua');
@@ -108,7 +155,4 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/terminado', $datos);
 		$this->load->view('theme/foot');
 	}
-
-
-
 }

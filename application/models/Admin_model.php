@@ -7,9 +7,12 @@ class Admin_model extends CI_Model {
 
   public function listado(){
     $condicion = array(
-      'IdArea' => $this->session->userdata('area')
+      'eventos.IdArea' => $this->session->userdata('area')
     );
-    $consulta = $this->db->get_where('eventos', $condicion);
+
+    //$this->db->group_by('eventos.IdEvento', 'DESC');
+    $this->db->join('eventos', 'eventos.IdEvento = preguntas.IdEvento');
+    $consulta = $this->db->get_where('preguntas', $condicion);
     return $consulta;
   }
 

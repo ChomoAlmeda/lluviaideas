@@ -15,4 +15,17 @@ class Usuario_model extends CI_Model {
     return $consulta;
   }
 
+  function usuario_agregar($datos){
+    $this->db->insert('participantes', $datos);
+    return $this->db->insert_id();
+  }
+
+  function pregunta($id){
+    $condicion = array(
+      'IdPregunta' => $id
+    );
+
+    $consulta = $this->db->get_where('preguntas', $condicion);
+    return $consulta;
+  }
 }

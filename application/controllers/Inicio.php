@@ -15,10 +15,9 @@ class Inicio extends CI_Controller {
 	// =======================================
 	public function index(){
 		if($_POST) {
-			$contra = md5($this->input->post('Contra'));
+
 			$datos = array(
-				'Usuario' => $this->input->post('Nombre'),
-				'Contra' => $contra
+				'ClavePregunta' => $this->input->post('IdPregunta'),
 			);
 
 			$consulta = $this->Inicio_model->acceso($datos);
@@ -26,23 +25,14 @@ class Inicio extends CI_Controller {
 			if($consulta -> num_rows() > 0){
 				foreach($consulta -> result() as $row){
 					$sesion = array(
-						'usuario'	=> $row->Usuario,
-						'id'			=> $row->IdUsuario,
-						'nombre' 	=> $row->Nombre,
-						'tipo' 		=> $row->Tipo,
-						'area'		=> $row->IdArea,
+						'id'							=> $row->IdPregunta,
+						'ClavePregunta'		=> $this->input->post('IdPregunta'),
 					);
 
 					$this->session->set_userdata($sesion);
-					$tipo = $this->session->userdata('tipo');
-
-					echo $tipo;
-
-					if($tipo == 1){
-						redirect('admin');
-					}else{
-						redirect('usuario');
-					}
+					$idp = $this->session->userdata('id');
+					$redirect = 'usuario/registro/'.$idp;
+					redirect($redirect);
 				}
 			}else{
 				echo 'Reintentalo';

@@ -12,14 +12,23 @@
       ?>
           <div class="col s4 m4 l4">
             <div class="card white darken-1">
-              <div class="card-content black-text" style="height: 300px; overflow: hidden; ">
+              <div class="card-content black-text" style="overflow: hidden; ">
                 <span class="card-title">No. <?=$row->IdEvento?></span>
-                <p><b>Clave: </b><?=$row->Clave?></p>
                 <p><b>Evento: </b><?=$row->Evento?></p>
                 <p><b>Fecha: </b><?=$row->Fecha?></p>
-              </div>
-              <div class="card-action">
-                <a href="#" style="color: #003A66;">Ver</a>
+                <p>Preguntas: </p>
+                <p>
+                  <table>
+                    <tr>
+                      <th>ClavePregunta</th>
+                      <th>Pregunta</th>
+                    </tr>
+                    <tr>
+                      <td><?=$row->ClavePregunta?></td>
+                      <td><?=$row->Pregunta?></td>
+                    </tr>
+                  </table>
+                </p>
               </div>
             </div>
           </div>
