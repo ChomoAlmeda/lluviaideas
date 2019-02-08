@@ -39,7 +39,7 @@ class Inicio extends CI_Controller {
 			}
 		}else{
 			$this->load->view('theme/head');
-			$this->load->view('inicio');
+			$this->load->view('inicio', $datos);
 			$this->load->view('theme/foot');
 		}
 	}
