@@ -28,4 +28,17 @@ class Usuario_model extends CI_Model {
     $consulta = $this->db->get_where('preguntas', $condicion);
     return $consulta;
   }
+
+  function agregarRespuesta($insert){
+    $this->db->insert('respuestas', $insert);
+  }
+
+  function respuestas($id){
+    $condicion = array(
+      'IdPregunta' => $id
+    );
+
+    $consulta = $this->db->get_where('respuestas', $condicion);
+    return $condicion;
+  }
 }

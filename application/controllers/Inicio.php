@@ -15,7 +15,6 @@ class Inicio extends CI_Controller {
 	// =======================================
 	public function index(){
 		if($_POST) {
-
 			$datos = array(
 				'ClavePregunta' => $this->input->post('IdPregunta'),
 			);
@@ -39,7 +38,7 @@ class Inicio extends CI_Controller {
 			}
 		}else{
 			$this->load->view('theme/head');
-			$this->load->view('inicio', $datos);
+			$this->load->view('inicio');
 			$this->load->view('theme/foot');
 		}
 	}

@@ -17,19 +17,8 @@
 
 ?>
 
+<br><br><br>
 <div class="container">
-  <br><br>
-  <div class="row">
-    <div class="cols s12 m12 l12">
-      <?php
-        if($pregunta -> num_rows() > 0){
-          foreach($pregunta->result() -> $row){
-            echo $row->Pregunta;
-          }
-        }
-      ?>
-    </div>
-  </div>
   <div class="row">
     <div class="col s8 m8 l8 push-s2 push-m2 push-l2 z-depth-1 white">
       <?=form_open()?>

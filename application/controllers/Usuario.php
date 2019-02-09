@@ -31,14 +31,15 @@ class Usuario extends CI_Controller {
 	// =======================================
 	public function registro($id){
 		if($_POST){
+
 			$datos = array(
 				'Nombre' => $this->input->post('Nombre'),
-				'IdPregunta' => $id
+				'IdPregunta' => $id,
 			);
 
-			$this->Usuario_model->usuario_agregar($datos);
+			$idu = $this->Usuario_model->usuario_agregar($datos);
 
-			$redirect = 'usuario/responder/'.$this->session->userdata('id');
+			$redirect = 'usuario/responder/'.$this->session->userdata('id').'/'.$idu;
 			redirect($redirect);
 		}else{
 			$this->load->view('theme/head');
@@ -50,17 +51,50 @@ class Usuario extends CI_Controller {
 	// =======================================
 	// Guardado de la respuestas para cada una
 	// de las preguntas de la actividad
-	// Fecha: 2018-01-23
+	// Fecha: 2019-01-23
 	// =======================================
-	public function responder($id){
+	public function responder($id, $idu){
 
 		$datos['pregunta'] = $this->Usuario_model->pregunta($id);
 		if($_POST){
-
+			$insert=array(
+				'Respuesta' => $this->input->post('Respuesta'),
+				'IdPregunta' => $id,
+				'IdUsuario' => $idu
+			);
+			$this->Usuario_model->agregarRespuesta($insert);
+			$redirect = 'usuario/mensaje/'.$this->session->userdata('id').'/'.$idu;
+			redirect($redirect);
 		}else{
 			$this->load->view('theme/head');
 			$this->load->view('usuarios/responder', $datos);
 			$this->load->view('theme/foot');
 		}
+	}
+
+	//==========================
+	// 2019-02-09
+	// Muestras las respuestas para que sean votadas
+	// Por los participantes
+	//==========================
+
+	public function votar($id){
+		$datos['respuestas'] = $this->Usuario_model->respuestas($id);
+		$this->load->view('theme/head');
+		$this->load->view('usuarios/votar', $datos);
+		$this->load->view('theme/foot');
+	}
+
+	//==========================
+	// 2019-02-09
+	// Pregunta al participante si desea agregar otra respuesta
+	//==========================
+
+	public function mensaje($id, $idu){
+		$datos['id'] = $id;
+		$datos['idu'] = $idu;
+		$this->load->view('theme/head');
+		$this->load->view('usuarios/mensaje', $datos);
+		$this->load->view('theme/foot');
 	}
 }
