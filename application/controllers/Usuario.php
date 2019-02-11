@@ -54,6 +54,12 @@ class Usuario extends CI_Controller {
 	// Fecha: 2019-01-23
 	// =======================================
 	public function responder($id, $idu){
+		$datos = array(
+			'contador' => 1
+		);
+
+		$this->session->set_userdata($datos);
+
 
 		$datos['pregunta'] = $this->Usuario_model->pregunta($id);
 		if($_POST){
@@ -93,8 +99,26 @@ class Usuario extends CI_Controller {
 
 	public function votarUp($id, $idp){
 		$datos['respuestas'] = $this->Usuario_model->votarUp($id);
-		$redirect = 'usuario/votar/'.$idp;
+
+		$contadorv = array(
+			'i' => $this->session->userdata('i') + 1,
+		);
+		$this->session->set_userdata($contadorv);
+
+		if( $this->session->userdata('i') >= 5){
+			$redirect = 'usuario/masvotados/'.$idp;
+		}else{
+			$redirect = 'usuario/votar/'.$idp;
+		}
 		redirect($redirect);
+	}
+
+
+	public function masvotados($idp){
+		$datos['respuestas'] = $this->Usuario_model->masVotados($idp);
+		$this->load->view('theme/head');
+		$this->load->view('usuarios/masvotados', $datos);
+		$this->load->view('theme/foot');
 	}
 
 	//==========================

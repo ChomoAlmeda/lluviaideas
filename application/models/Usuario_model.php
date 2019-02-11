@@ -68,4 +68,16 @@ class Usuario_model extends CI_Model {
 
     return $consulta;
   }
+
+  //muestra las respuestas ma votadas
+  function masVotados($id){
+    $condicion = array(
+      'IdRespuesta' => $id
+    );
+
+    $this->db->order_by('Votos', 'DESC');
+    $this->db->limit(5);
+    $consulta = $this->db->get_where('respuestas', $condicion);
+    return $consulta;
+  }
 }
