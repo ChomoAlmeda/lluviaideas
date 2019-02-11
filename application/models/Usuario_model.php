@@ -72,7 +72,7 @@ class Usuario_model extends CI_Model {
   //muestra las respuestas ma votadas
   function masVotados($id){
     $condicion = array(
-      'IdRespuesta' => $id
+      'IdPregunta' => $id
     );
 
     $this->db->order_by('Votos', 'DESC');

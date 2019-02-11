@@ -1,10 +1,15 @@
 <div class="container">
   <div class="row">
     <div class="col s12 m12 l12">
+     <h2>Respuestas mas Votadas</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s12 m12 l12">
       <table>
         <tr>
           <th>#</th>
-          <th>Pregunta</th>
+          <th>Respuestas</th>
           <th>Votos</th>
 
         </tr>
