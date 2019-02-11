@@ -37,8 +37,7 @@ class Usuario_model extends CI_Model {
     $condicion = array(
       'IdPregunta' => $id
     );
-
     $consulta = $this->db->get_where('respuestas', $condicion);
-    return $condicion;
+    return $consulta;
   }
 }
