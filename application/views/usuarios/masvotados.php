@@ -1,7 +1,14 @@
 <div class="container">
   <div class="row">
     <div class="col s12 m12 l12">
-     <h2>Respuestas mas Votadas</h2>
+      <h2>
+        <?php
+          foreach($pregunta -> result() as $p){
+            echo '<h2>'.$p->Pregunta.'</h2>';
+          }
+        ?>
+      </h2>
+     <h4>Respuestas mas Votadas</h4>
     </div>
   </div>
   <div class="row">
