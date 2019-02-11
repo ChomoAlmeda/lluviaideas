@@ -6,7 +6,7 @@
           <th>#</th>
           <th>Pregunta</th>
           <th>Votos</th>
-          <th colspan="2"></th>
+          <th></th>
         </tr>
         <?php
           if($respuestas -> num_rows() > 0){
@@ -16,16 +16,12 @@
             <td><?=$row->IdRespuesta?></td>
             <td><?=$row->Respuesta?></td>
             <td><?=$row->Votos?></td>
-            <td><a href="#" class="green-text"><i class="material-icons">file_upload</i></a></td>
-            <td><a href="#" class="red-text"><i class="material-icons">file_download</i></a></td>
+            <td><a href="<?=base_url()?>index.php/usuario/votarUp/<?=$row->IdRespuesta?>/<?=$row->IdPregunta?>" class="green-text"><i class="material-icons">file_upload</i></a></td>
           </tr>
         <?php
             }
           }
         ?>
-        <tr>
-          <td></td>
-        </tr>
 
       </table>
     </div>

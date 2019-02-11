@@ -4,7 +4,7 @@ class Usuario_model extends CI_Model {
     parent::__construct();
       // Your own constructor code
   }
-
+  //Muestra el listado de no se que
   function listado($id){
     $condicion = array(
       'IdArea' => $this->session->userdata('area'),
@@ -15,10 +15,13 @@ class Usuario_model extends CI_Model {
     return $consulta;
   }
 
+  //Se agrega un usuario para que pueda participar en la votacion
   function usuario_agregar($datos){
     $this->db->insert('participantes', $datos);
     return $this->db->insert_id();
   }
+
+  //Obtiene la prgunta en base al Id generado por el admin
 
   function pregunta($id){
     $condicion = array(
@@ -29,15 +32,40 @@ class Usuario_model extends CI_Model {
     return $consulta;
   }
 
+  //Inserta una respuesta a la base de datos
   function agregarRespuesta($insert){
     $this->db->insert('respuestas', $insert);
   }
+
+  //Muestra la lista de respuestas de cada pregunta
 
   function respuestas($id){
     $condicion = array(
       'IdPregunta' => $id
     );
+    $this->db->order_by('Votos', 'DESC');
     $consulta = $this->db->get_where('respuestas', $condicion);
+    return $consulta;
+  }
+
+  //Agrega un +1 al contador de votos de la respuesta
+  function votarUp($id){
+    $condicion = array(
+      'IdRespuesta' => $id
+    );
+
+    $consulta = $this->db->get_where('respuestas', $condicion);
+    foreach($consulta -> result() as $row){
+      $sumar = $row->Votos + 1;
+
+      $condicion2 = array(
+        'Votos' => $sumar
+      );
+    }
+
+    $this->db->where('IdRespuesta', $id);
+    $this->db->update('respuestas', $condicion2);
+
     return $consulta;
   }
 }

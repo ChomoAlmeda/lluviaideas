@@ -86,6 +86,18 @@ class Usuario extends CI_Controller {
 	}
 
 	//==========================
+	// 2019-02-11
+	// Muestras las respuestas para que sean votadas
+	// Por los participantes
+	//==========================
+
+	public function votarUp($id, $idp){
+		$datos['respuestas'] = $this->Usuario_model->votarUp($id);
+		$redirect = 'usuario/votar/'.$idp;
+		redirect($redirect);
+	}
+
+	//==========================
 	// 2019-02-09
 	// Pregunta al participante si desea agregar otra respuesta
 	//==========================
