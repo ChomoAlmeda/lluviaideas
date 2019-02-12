@@ -1,3 +1,3 @@
 <?php
-  header('Location:http://localhost/lluviaideas/index.php/admin');
+  header('Location:http://200.23.125.73/lluviaideas/index.php/admin');
  ?>
