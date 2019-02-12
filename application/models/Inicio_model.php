@@ -11,7 +11,7 @@ class Inicio_model extends CI_Model {
   // Fecha: 2019-01-21
   // =======================================
   function acceso($datos){
-    $consulta = $this->db->get_where('preguntas', $datos);
+    $consulta = $this->db->get_where('usuarios', $datos);
     return $consulta;
   }
 }

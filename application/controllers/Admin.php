@@ -20,7 +20,7 @@ class Admin extends CI_Controller {
 		if($_POST) {
 			$contra = md5($this->input->post('Contra'));
 			$datos = array(
-				'Usuario' => $this->input->post('Nombre'),
+				'Usuario' => $this->input->post('Usuario'),
 				'Contra' => $contra
 			);
 
@@ -42,7 +42,7 @@ class Admin extends CI_Controller {
 					echo $tipo;
 
 					if($tipo == 1){
-						redirect('admin');
+						redirect('admin/inicio');
 					}else{
 						redirect('usuario');
 					}
@@ -52,7 +52,7 @@ class Admin extends CI_Controller {
 			}
 		}else{
 			$this->load->view('theme/head');
-			$this->load->view('inicio');
+			$this->load->view('admin/acceso');
 			$this->load->view('theme/foot');
 		}
 	}
