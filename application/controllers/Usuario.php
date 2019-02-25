@@ -117,9 +117,11 @@ class Usuario extends CI_Controller {
 	public function masvotados($idp){
 		$datos['pregunta'] = $this->Usuario_model->pregunta($idp);
 		$datos['respuestas'] = $this->Usuario_model->masVotados($idp);
+
 		$this->load->view('theme/head');
 		$this->load->view('usuarios/masvotados', $datos);
 		$this->load->view('theme/foot');
+		$this->session->sess_destroy();
 	}
 
 	//==========================
