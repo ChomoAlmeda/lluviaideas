@@ -8,7 +8,7 @@
 
 <div class="row">
   <div class="col s2 m2 l2" style="background: #003A66; color: white; height: 100%;">
-    <h3> <a href="<?=base_url()?>index.php/admin" style="color: white;"> <?=$this->session->userdata('nombre')?></a></h3>
+    <h3> <a href="<?=base_url()?>index.php/admin/inicio" style="color: white;"> <?=$this->session->userdata('nombre')?></a></h3>
     <hr>
     <ul>
       <li>

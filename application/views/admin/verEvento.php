@@ -3,6 +3,12 @@
 ?>
 
 <div class="col s10 m10 l10">
+  <div class="nav-wrapper">
+    <div class="col s12" >
+      <a href="<?=base_url()?>index.php/admin/inicio" class="breadcrumb" style="color: black;">Inicio</a>
+      <a href="<?=base_url()?>index.php/admin/verEvento/<?=$id?>" class="breadcrumb" style="color: black;">Eventos</a>
+    </div>
+  </div>
   <h3>Ver informacion del Evento</h3>
   <hr>
   <div class="row">

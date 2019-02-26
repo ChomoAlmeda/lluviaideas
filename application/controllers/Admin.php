@@ -161,17 +161,22 @@ class Admin extends CI_Controller {
 		$datos['evento'] = $this->Admin_model->evento($id);
 		$datos['preguntas'] = $this->Admin_model->preguntas($id);
 
+		$datos['id'] = $id;
+
+
 		$this->load->view('theme/head');
 		$this->load->view('theme/menua');
 		$this->load->view('admin/verEvento', $datos);
 		$this->load->view('theme/foot');
 	}
 
-	public function verEstadisticas($id){
+	public function verEstadisticas($ev, $id){
 		$datos['evento'] = $this->Admin_model->evento($id);
 		$datos['pregunta'] = $this->Admin_model->pregunta($id);
 		$datos['participantes'] = $this->Admin_model->participantes($id);
 		$datos['votadas'] = $this->Admin_model->masVotadas($id);
+		$datos['id'] = $id;
+		$datos['ev'] = $ev;
 
 		$this->load->view('theme/head');
 		$this->load->view('theme/menua');
