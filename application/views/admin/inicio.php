@@ -16,19 +16,9 @@
                 <span class="card-title">No. <?=$row->IdEvento?></span>
                 <p><b>Evento: </b><?=$row->Evento?></p>
                 <p><b>Fecha: </b><?=$row->Fecha?></p>
-                <p>Preguntas: </p>
-                <p>
-                  <table>
-                    <tr>
-                      <th>ClavePregunta</th>
-                      <th>Pregunta</th>
-                    </tr>
-                    <tr>
-                      <td><?=$row->ClavePregunta?></td>
-                      <td><?=$row->Pregunta?></td>
-                    </tr>
-                  </table>
-                </p>
+              </div>
+              <div class="card-action">
+                <a href="<?=base_url()?>index.php/admin/verEvento/<?=$row->IdEvento?>">Ver Informacion</a>
               </div>
             </div>
           </div>

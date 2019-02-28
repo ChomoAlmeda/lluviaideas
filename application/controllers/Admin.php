@@ -5,7 +5,7 @@ class Admin extends CI_Controller {
 	function __construct() {
 		parent::__construct();
     $this->load->library('session');
-    $this->load->library('comprobar');
+
     $this->load->library('menua');
 		$this->load->model('Admin_model');
 		$this->load->model('Inicio_model');
@@ -24,7 +24,7 @@ class Admin extends CI_Controller {
 				'Contra' => $contra
 			);
 
-			$consulta = $this->Inicio_model->acceso($datos);
+			$consulta = $this->Admin_model->acceso($datos);
 
 			if($consulta -> num_rows() > 0){
 				foreach($consulta -> result() as $row){
@@ -149,10 +149,38 @@ class Admin extends CI_Controller {
 	public function terminado($id){
 		$datos['evento'] = $this->Admin_model->evento($id);
 		$datos['preguntas'] = $this->Admin_model->preguntas($id);
+		$datos['participantes'] = $this->Admin_model->participantes($id);
 
 		$this->load->view('theme/head');
 		$this->load->view('theme/menua');
 		$this->load->view('admin/terminado', $datos);
+		$this->load->view('theme/foot');
+	}
+
+	public function verEvento($id){
+		$datos['evento'] = $this->Admin_model->evento($id);
+		$datos['preguntas'] = $this->Admin_model->preguntas($id);
+
+		$datos['id'] = $id;
+
+
+		$this->load->view('theme/head');
+		$this->load->view('theme/menua');
+		$this->load->view('admin/verEvento', $datos);
+		$this->load->view('theme/foot');
+	}
+
+	public function verEstadisticas($ev, $id){
+		$datos['evento'] = $this->Admin_model->evento($id);
+		$datos['pregunta'] = $this->Admin_model->pregunta($id);
+		$datos['participantes'] = $this->Admin_model->participantes($id);
+		$datos['votadas'] = $this->Admin_model->masVotadas($id);
+		$datos['id'] = $id;
+		$datos['ev'] = $ev;
+
+		$this->load->view('theme/head');
+		$this->load->view('theme/menua');
+		$this->load->view('admin/verEstadisticas', $datos);
 		$this->load->view('theme/foot');
 	}
 }

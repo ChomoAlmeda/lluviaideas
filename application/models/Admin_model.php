@@ -5,14 +5,16 @@ class Admin_model extends CI_Model {
       // Your own constructor code
   }
 
+  public function acceso($datos){
+    $consulta = $this->db->get_where('usuarios', $condicion);
+    return $consulta;
+  }
+
   public function listado(){
     $condicion = array(
       'eventos.IdArea' => $this->session->userdata('area')
     );
-
-    //$this->db->group_by('eventos.IdEvento', 'DESC');
-    $this->db->join('eventos', 'eventos.IdEvento = preguntas.IdEvento');
-    $consulta = $this->db->get_where('preguntas', $condicion);
+    $consulta = $this->db->get_where('eventos', $condicion);
     return $consulta;
   }
 
@@ -30,7 +32,7 @@ class Admin_model extends CI_Model {
   }
 
   public function inserta_nueva_pregunta($insert){
-    $this->db->insert('preguntas', $insert);
+    $this->db->insert('respuestas', $insert);
     return $this->db->insert_id();
   }
 
@@ -39,6 +41,33 @@ class Admin_model extends CI_Model {
       'IdEvento' => $id
     );
     $consulta = $this->db->get_where('preguntas', $condicion);
+    return $consulta;
+  }
+
+  public function pregunta($id){
+    $condicion = array(
+      'IdPregunta' => $id
+    );
+    $consulta = $this->db->get_where('preguntas', $condicion);
+    return $consulta;
+
+  }
+
+  public function participantes($id){
+    $condicion = array(
+      'IdPregunta' => $id
+    );
+    $consulta = $this->db->get_where('participantes', $condicion);
+    return $consulta;
+  }
+
+  public function masVotadas($id){
+    $condicion = array(
+      'respuestas.IdPregunta' => $id
+    );
+    $this->db->order_by('Votos', 'DESC');
+
+    $consulta = $this->db->get_where('respuestas', $condicion);
     return $consulta;
   }
 }
