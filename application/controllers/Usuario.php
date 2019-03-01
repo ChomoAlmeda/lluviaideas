@@ -54,13 +54,7 @@ class Usuario extends CI_Controller {
 	// Fecha: 2019-01-23
 	// =======================================
 	public function responder($id, $idu){
-		$datos = array(
-			'contador' => 1
-		);
-
-		$this->session->set_userdata($datos);
-
-
+		//$datos['respuestas'] = $this->Usuario_model->votarUp($id);
 		$datos['pregunta'] = $this->Usuario_model->pregunta($id);
 		if($_POST){
 			$insert=array(
@@ -68,8 +62,13 @@ class Usuario extends CI_Controller {
 				'IdPregunta' => $id,
 				'IdUsuario' => $idu
 			);
-			$this->Usuario_model->agregarRespuesta($insert);
-			$redirect = 'usuario/mensaje/'.$this->session->userdata('id').'/'.$idu;
+			$consulta = $this->Usuario_model->agregarRespuesta($insert);
+			if($consulta -> num_rows() >= 5){
+				$redirect = '/usuario/votar/'.$id;
+			}else{
+				$redirect = 'usuario/mensaje/'.$this->session->userdata('id').'/'.$idu;
+			}
+
 			redirect($redirect);
 		}else{
 			$this->load->view('theme/head');
