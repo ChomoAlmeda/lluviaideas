@@ -12,7 +12,7 @@ class Inicio_model extends CI_Model {
   // =======================================
   function acceso($datos){
     
-    $consulta = $this->db->get_where('usuarios', $datos);
+    $consulta = $this->db->get_where('preguntas', $datos);
     return $consulta;
   }
 }
