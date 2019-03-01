@@ -36,6 +36,8 @@
         ?>
 
       </table>
+      <br>
+      <a href="<?=base_url()?>index.php" class="btn blue">Regresar</a>
     </div>
   </div>
 </div>

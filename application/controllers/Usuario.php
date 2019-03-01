@@ -54,13 +54,7 @@ class Usuario extends CI_Controller {
 	// Fecha: 2019-01-23
 	// =======================================
 	public function responder($id, $idu){
-		$datos = array(
-			'contador' => 1
-		);
-
-		$this->session->set_userdata($datos);
-
-
+		//$datos['respuestas'] = $this->Usuario_model->votarUp($id);
 		$datos['pregunta'] = $this->Usuario_model->pregunta($id);
 		if($_POST){
 			$insert=array(
