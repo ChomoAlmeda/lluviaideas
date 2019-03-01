@@ -62,8 +62,13 @@ class Usuario extends CI_Controller {
 				'IdPregunta' => $id,
 				'IdUsuario' => $idu
 			);
-			$this->Usuario_model->agregarRespuesta($insert);
-			$redirect = 'usuario/mensaje/'.$this->session->userdata('id').'/'.$idu;
+			$consulta = $this->Usuario_model->agregarRespuesta($insert);
+			if($consulta -> num_rows() >= 5){
+				$redirect = '/usuario/votar/'.$id;
+			}else{
+				$redirect = 'usuario/mensaje/'.$this->session->userdata('id').'/'.$idu;
+			}
+
 			redirect($redirect);
 		}else{
 			$this->load->view('theme/head');

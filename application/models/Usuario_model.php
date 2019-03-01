@@ -35,6 +35,14 @@ class Usuario_model extends CI_Model {
   //Inserta una respuesta a la base de datos
   function agregarRespuesta($insert){
     $this->db->insert('respuestas', $insert);
+
+    $condicion = array(
+      'IdPregunta' => $insert['IdPregunta'],
+      'IdUsuario' => $insert['IdUsuario'],
+    );
+
+    $consulta = $this->db->get_where('respuestas', $condicion);
+    return $consulta;
   }
 
   //Muestra la lista de respuestas de cada pregunta
