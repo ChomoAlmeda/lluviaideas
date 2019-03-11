@@ -1,20 +1,24 @@
 <?php
-  $atributos = array('class' => 'form');
+  $atributos = array('class' => 'formulario');
   $formulario = array(
     'Nombre' => array(
-      'type' => 'text',
-      'name'  => 'Nombre',
-      'class' => 'validate',
-      'placeholder' => 'Nombre'
+      'type'  => 'text',
+      'class' => 'input_text',
+      'name'  => 'Nombre'
     ),
     'Contra' => array(
-      'type' => 'password',
-      'name'  => 'Contra',
-      'class' => 'validate',
-      'placeholder' => 'Contraseña'
+      'type'  => 'password',
+      'class' => 'input_text',
+      'name'  => 'Contra'
     ),
-  );
+    'Boton' => array(
+      'type'  => 'submit',
+      'class' => 'btn input_btn',
+      'name'  => 'Boton',
+      'value' => 'Iniciar'
+    ),
 
+  );
 ?>
 
 <div class="container">

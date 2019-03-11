@@ -20,7 +20,7 @@ class Admin extends CI_Controller {
 		if($_POST) {
 			$contra = md5($this->input->post('Contra'));
 			$datos = array(
-				'Usuario' => $this->input->post('Nombre'),
+				'Usuario' => $this->input->post('Usuario'),
 				'Contra' => $contra
 			);
 
