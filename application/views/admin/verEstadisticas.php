@@ -31,7 +31,7 @@
   </div>
   <div class="row">
 
-    <div class="col s4 m4 l4">
+    <div class="col s6 m6 l6">
       <div class="card white darken-1">
         <div class="card-content black-text" style="overflow: hidden; ">
           <span class="card-title">Participantes</span>
@@ -58,7 +58,7 @@
       </div>
     </div>
 
-    <div class="col s4 m4 l4">
+    <div class="col s6 m6 l6">
       <div class="card white darken-1">
         <div class="card-content black-text" style="overflow: hidden; ">
           <span class="card-title">Respuestas mas Votadas</span>

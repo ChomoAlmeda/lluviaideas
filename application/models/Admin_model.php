@@ -66,6 +66,7 @@ class Admin_model extends CI_Model {
       'respuestas.IdPregunta' => $id
     );
     $this->db->order_by('Votos', 'DESC');
+    $this->db->limit(10);
 
     $consulta = $this->db->get_where('respuestas', $condicion);
     return $consulta;
