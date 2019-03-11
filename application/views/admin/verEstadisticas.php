@@ -19,6 +19,8 @@
           <div class="card white darken-1">
             <div class="card-content black-text" style="overflow: hidden; ">
               <h3><?=$row->Pregunta?></h3>
+              <br>
+              <a href="<?=base_url()?>index.php/admin/GenerarPdf/<?=$ev?>/<?=$id?>" class="btn">Generar PDF</a>
             </div>
           </div>
         </div>
